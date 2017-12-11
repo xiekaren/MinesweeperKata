@@ -17,8 +17,8 @@ namespace MinesweeperKata.Spec
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("Minesweeper", Description="\tIn order to not die\r\n\tAs a minesweeper player\r\n\tI want to see a grid showing whe" +
-        "re the mines are", SourceFile="Minesweeper.feature", SourceLine=0)]
+    [TechTalk.SpecRun.FeatureAttribute("Minesweeper", Description="\tIn order to not die\r\n\tAs a minesweeper player\r\n\tI want to see a field showing wh" +
+        "ere the mines are", SourceFile="Minesweeper.feature", SourceLine=0)]
     public partial class MinesweeperFeature
     {
         
@@ -31,8 +31,8 @@ namespace MinesweeperKata.Spec
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Minesweeper", "\tIn order to not die\r\n\tAs a minesweeper player\r\n\tI want to see a grid showing whe" +
-                    "re the mines are", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Minesweeper", "\tIn order to not die\r\n\tAs a minesweeper player\r\n\tI want to see a field showing wh" +
+                    "ere the mines are", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -63,20 +63,34 @@ namespace MinesweeperKata.Spec
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Show no mines", SourceLine=5)]
-        public virtual void ShowNoMines()
+        [TechTalk.SpecRun.ScenarioAttribute("No mines on a 1x1 field", SourceLine=5)]
+        public virtual void NoMinesOnA1X1Field()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Show no mines", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No mines on a 1x1 field", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have entered a 1 x 1 grid into the MineVisualiser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I enter a 1 x 1 field \".\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("I have entered also entered a grid that looks like \".\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I use the mine visualiser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.When("I execute generate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("the result should be \"0\" on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should see \"0\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("1 mine on a 1x1 field", SourceLine=10)]
+        public virtual void _1MineOnA1X1Field()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1 mine on a 1x1 field", ((string[])(null)));
+#line 11
+this.ScenarioSetup(scenarioInfo);
+#line 12
+ testRunner.Given("I enter a 1 x 1 field \"*\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+ testRunner.When("I use the mine visualiser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.Then("I should see \"*\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

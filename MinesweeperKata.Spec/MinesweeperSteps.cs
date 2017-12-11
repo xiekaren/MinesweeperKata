@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 
 namespace MinesweeperKata.Spec
@@ -6,31 +8,26 @@ namespace MinesweeperKata.Spec
     [Binding]
     public class MinesweeperSteps
     {
-        private MineVisualiser _mineVisualiser;
+        private readonly Minesweeper _minesweeper = new Minesweeper();
+        private Field _field;
         private string _result;
 
-        [Given(@"I have entered a (.*) x (.*) grid into the MineVisualiser")]
-        public void GivenIHaveEnteredDimensionsOfTheGridIntoTheMineVisualiser(int width, int height)
+        [Given(@"I enter a (.*) x (.*) field ""(.*)""")]
+        public void GivenIEnterAField(int width, int height, string inputField)
         {
-            _mineVisualiser = new MineVisualiser(width, height);
+            _field = _minesweeper.MakeField(width, height, inputField);
         }
         
-        [Given(@"I have entered also entered a grid that looks like ""(.*)""")]
-        public void GivenIHaveEnteredAlsoEnteredAGridThatLooksLike(string grid)
+        [When(@"I use the mine visualiser")]
+        public void WhenIUseTheMineVisualiser()
         {
-            _mineVisualiser.SetGrid(grid);
+            _result = _minesweeper.ShowHintsAndMines(_field);
         }
         
-        [When(@"I execute generate")]
-        public void WhenIExecuteGenerate()
+        [Then(@"I should see ""(.*)""")]
+        public void ThenIShouldSee(string expectedField)
         {
-            _result = _mineVisualiser.Execute();
-        }
-        
-        [Then(@"the result should be ""(.*)"" on the screen")]
-        public void ThenTheResultShouldBeOnTheScreen(string expectedResult)
-        {
-            Assert.AreEqual(expectedResult, _result);
+            Assert.AreEqual(expectedField, _result);
         }
     }
 }
