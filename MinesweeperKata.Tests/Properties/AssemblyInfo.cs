@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MinesweeperKata.Spec")]
+[assembly: AssemblyTitle("MinesweeperKata.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MinesweeperKata.Spec")]
+[assembly: AssemblyProduct("MinesweeperKata.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("eab93dab-e40a-409e-94ff-3c75dd7246e9")]
+[assembly: Guid("76bb5591-29fc-4838-9109-0a5c0afd73f8")]
 
 // Version information for an assembly consists of the following four values:
 //
