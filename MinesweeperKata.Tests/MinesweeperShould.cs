@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace MinesweeperKata.Tests
@@ -15,18 +16,27 @@ namespace MinesweeperKata.Tests
         }
 
         [Test]
+        [Ignore("Ignore for now")]
         public void ReturnZeroForAFieldWithNoMines()
         {
-            var minefield = new Minefield(new[] {"."});
+            var mineFieldValues = new Dictionary<string, int>
+            {
+                { "00", 0 }
+            };
+
             var expectedValues = new Dictionary<string, int>
             {
                 { "00", 0 }
             };
+
+            var initialMineField = new Minefield(mineFieldValues);
             var expected = new Minefield(expectedValues);
+            
+            var result = _minesweeper.ShowHints(initialMineField);
 
-            var result = _minesweeper.ShowHints(minefield);
-
-            Assert.AreEqual(expected, result);
+            CollectionAssert.AreEquivalent(expected.Values, result.Values);
         }
+
+        
     }
 }

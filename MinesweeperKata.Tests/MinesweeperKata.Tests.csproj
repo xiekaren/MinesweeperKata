@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FieldInspectorShould.cs" />
     <Compile Include="MinesweeperShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,10 +1,22 @@
-﻿namespace MinesweeperKata
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace MinesweeperKata
 {
     public class Minesweeper
     {
+        private readonly FieldInspector _fieldInspector;
+
+        public Minesweeper()
+        {
+            _fieldInspector = new FieldInspector();
+        }
+
         public Minefield ShowHints(Minefield minefield)
         {
-            throw new System.NotImplementedException();
+            var mineLocations = _fieldInspector.GetMineLocations(minefield);
+            var neighboursOfMines = _fieldInspector.GetMineNeighbours(minefield, mineLocations);
+            return new Minefield(new Dictionary<string, int>());
         }
     }
 }
