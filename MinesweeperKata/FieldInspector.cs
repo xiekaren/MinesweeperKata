@@ -10,20 +10,20 @@ namespace MinesweeperKata
             return minefield.Values.Where(value => value.Value == -1).Select(x => x.Key);
         }
 
-        public IEnumerable<Point> GetMineNeighbours(Minefield minefield, IEnumerable<Point> mineLocations)
+        public IEnumerable<Point> GetEmptyNeighboursForMines(Minefield minefield, IEnumerable<Point> mineLocations)
         {
             var mineNeighbours = new List<Point>();
 
             foreach (var mineLocation in mineLocations)
             {
-                var neighbours = GetNeighboursForPoint(mineLocation, minefield);
+                var neighbours = GetEmptyNeighboursForPoint(mineLocation, minefield);
                 mineNeighbours.AddRange(neighbours);
             }
 
             return mineNeighbours;
         }
 
-        public IEnumerable<Point> GetNeighboursForPoint(Point point, Minefield mineField)
+        public IEnumerable<Point> GetEmptyNeighboursForPoint(Point point, Minefield mineField)
         {
             var neighbours = new List<Point>();
 
@@ -33,7 +33,8 @@ namespace MinesweeperKata
                 {
                     var adjacentPoint = new Point(x, y);
                     if (mineField.Values.ContainsKey(adjacentPoint)
-                        && !adjacentPoint.Equals(point))
+                        && !adjacentPoint.Equals(point) 
+                        && mineField.Values[adjacentPoint] != -1)
                     {
                         neighbours.Add(adjacentPoint);
                     }

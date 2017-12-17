@@ -73,7 +73,7 @@ namespace MinesweeperKata.Tests
                 new Point(1, 1),
             };
 
-            var result = _fieldInspector.GetMineNeighbours(mineField, mineLocations);
+            var result = _fieldInspector.GetEmptyNeighboursForMines(mineField, mineLocations);
 
             CollectionAssert.AreEquivalent(expected, result);
         }
@@ -90,15 +90,15 @@ namespace MinesweeperKata.Tests
             };
 
             var mineField = new Minefield(mineFieldValues);
-            var point = new Point(1, 1);
+            var point = new Point(0, 0);
             var expected = new List<Point>
             {
-                new Point(0, 0),
                 new Point(0, 1),
-                new Point(1, 0)
+                new Point(1, 0),
+                new Point(1, 1)
             };
 
-            var result = _fieldInspector.GetNeighboursForPoint(point, mineField);
+            var result = _fieldInspector.GetEmptyNeighboursForPoint(point, mineField);
 
             CollectionAssert.AreEquivalent(expected, result);
         }
@@ -133,7 +133,7 @@ namespace MinesweeperKata.Tests
                 new Point(2, 2)
             };
 
-            var result = _fieldInspector.GetNeighboursForPoint(point, mineField);
+            var result = _fieldInspector.GetEmptyNeighboursForPoint(point, mineField);
 
             CollectionAssert.AreEquivalent(expected, result);
         }
@@ -150,7 +150,30 @@ namespace MinesweeperKata.Tests
             var point = new Point(0, 0);
             var expected = new List<Point>();
 
-            var result = _fieldInspector.GetNeighboursForPoint(point, mineField);
+            var result = _fieldInspector.GetEmptyNeighboursForPoint(point, mineField);
+
+            CollectionAssert.AreEquivalent(expected, result);
+        }
+
+        [Test]
+        public void GetNeighboursExcludingMines()
+        {
+            var mineFieldValues = new Dictionary<Point, int>
+            {
+                {new Point(0, 0), 0},
+                {new Point(0, 1), -1},
+                {new Point(1, 0), -1},
+                {new Point(1, 1), 0},
+            };
+
+            var mineField = new Minefield(mineFieldValues);
+            var point = new Point(0, 0);
+            var expected = new List<Point>
+            {
+                new Point(1, 1)
+            };
+
+            var result = _fieldInspector.GetEmptyNeighboursForPoint(point, mineField);
 
             CollectionAssert.AreEquivalent(expected, result);
         }

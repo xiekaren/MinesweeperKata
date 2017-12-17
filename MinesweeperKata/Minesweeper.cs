@@ -15,7 +15,7 @@ namespace MinesweeperKata
         public Minefield ShowHints(Minefield minefield)
         {
             var mineLocations = _fieldInspector.GetMineLocations(minefield);
-            var mineNeighbours = _fieldInspector.GetMineNeighbours(minefield, mineLocations);
+            var mineNeighbours = _fieldInspector.GetEmptyNeighboursForMines(minefield, mineLocations);
             return new Minefield(new Dictionary<Point, int>());
         }
     }
