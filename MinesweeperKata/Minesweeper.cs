@@ -16,7 +16,7 @@ namespace MinesweeperKata
         {
             var mineLocations = _fieldInspector.GetMineLocations(minefield);
             var neighboursOfMines = _fieldInspector.GetMineNeighbours(minefield, mineLocations);
-            return new Minefield(new Dictionary<string, int>());
+            return new Minefield(new Dictionary<Point, int>());
         }
     }
 }

@@ -6,27 +6,42 @@ namespace MinesweeperKata
 {
     public class FieldInspector
     {
-        public IEnumerable<string> GetMineLocations(Minefield minefield)
+        public IEnumerable<Point> GetMineLocations(Minefield minefield)
         {
             return minefield.Values.Where(value => value.Value == -1).Select(x => x.Key);
         }
 
-        public IEnumerable<string> GetMineNeighbours(Minefield minefield, IEnumerable<string> mineLocations)
+        public IEnumerable<Point> GetMineNeighbours(Minefield minefield, IEnumerable<Point> mineLocations)
         {
-            var mineNeighbours = new List<string>();
+            var mineNeighbours = new List<Point>();
 
             foreach (var mineLocation in mineLocations)
             {
-                var neighbours = GetNeighbours(mineLocation);
+                var neighbours = GetNeighboursForPoint(mineLocation, minefield);
                 mineNeighbours.AddRange(neighbours);
             }
 
             return mineNeighbours;
         }
 
-        private IEnumerable<string> GetNeighbours(string mineLocation)
+        public IEnumerable<Point> GetNeighboursForPoint(Point point, Minefield mineField)
         {
-            throw new NotImplementedException();
+            var neighbours = new List<Point>();
+
+            for (var x = point.X - 1; x < point.X + 1; x++)
+            {
+                for (var y = point.Y - 1; y < point.Y + 1; y++)
+                {
+                    var adjacentPoint = new Point(x, y);
+                    if (mineField.Values.ContainsKey(adjacentPoint)
+                        && !adjacentPoint.Equals(point))
+                    {
+                        neighbours.Add(adjacentPoint);
+                    }
+                }
+            }
+
+            return neighbours;
         }
     }
 }
