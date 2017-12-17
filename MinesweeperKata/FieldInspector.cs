@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace MinesweeperKata
@@ -28,9 +27,9 @@ namespace MinesweeperKata
         {
             var neighbours = new List<Point>();
 
-            for (var x = point.X - 1; x < point.X + 1; x++)
+            for (var x = point.X - 1; x <= point.X + 1; x++)
             {
-                for (var y = point.Y - 1; y < point.Y + 1; y++)
+                for (var y = point.Y - 1; y <= point.Y + 1; y++)
                 {
                     var adjacentPoint = new Point(x, y);
                     if (mineField.Values.ContainsKey(adjacentPoint)
