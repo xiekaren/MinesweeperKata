@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="FieldInspectorShould.cs" />
     <Compile Include="MinesweeperShould.cs" />
+    <Compile Include="NeighbourInspectorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

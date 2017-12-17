@@ -6,16 +6,18 @@ namespace MinesweeperKata
     public class Minesweeper
     {
         private readonly FieldInspector _fieldInspector;
+        private readonly NeighbourInspector _neighbourInspector;
 
         public Minesweeper()
         {
             _fieldInspector = new FieldInspector();
+            _neighbourInspector = new NeighbourInspector();
         }
 
         public Minefield ShowHints(Minefield minefield)
         {
             var mineLocations = _fieldInspector.GetMineLocations(minefield);
-            var mineNeighbours = _fieldInspector.GetEmptyNeighboursForMines(minefield, mineLocations);
+            var mineNeighbours = _neighbourInspector.GetEmptyNeighboursForMines(minefield, mineLocations);
             return new Minefield(new Dictionary<Point, int>());
         }
     }
