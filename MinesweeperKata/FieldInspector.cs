@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MinesweeperKata
@@ -12,7 +13,20 @@ namespace MinesweeperKata
 
         public IEnumerable<string> GetMineNeighbours(Minefield minefield, IEnumerable<string> mineLocations)
         {
-            throw new System.NotImplementedException();
+            var mineNeighbours = new List<string>();
+
+            foreach (var mineLocation in mineLocations)
+            {
+                var neighbours = GetNeighbours(mineLocation);
+                mineNeighbours.AddRange(neighbours);
+            }
+
+            return mineNeighbours;
+        }
+
+        private IEnumerable<string> GetNeighbours(string mineLocation)
+        {
+            throw new NotImplementedException();
         }
     }
 }
