@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="FieldInspector.cs" />
     <Compile Include="FieldSize.cs" />
+    <Compile Include="Formatter.cs" />
     <Compile Include="HintAdder.cs" />
     <Compile Include="InputToMinefieldParser.cs" />
     <Compile Include="Minefield.cs" />
