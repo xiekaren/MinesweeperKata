@@ -4,14 +4,14 @@ using NUnit.Framework;
 namespace MinesweeperKata.Tests
 {
     [TestFixture]
-    public class InputParserShould
+    public class InputToMinefieldParserShould
     {
-        private InputParser _inputParser;
+        private InputToMinefieldParser _inputToMinefieldParser;
 
         [SetUp]
         public void SetUp()
         {
-            _inputParser = new InputParser();
+            _inputToMinefieldParser = new InputToMinefieldParser();
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace MinesweeperKata.Tests
                                  "\n\n" +
                                  "00";
 
-            var result = _inputParser.SplitFields(input);
+            var result = _inputToMinefieldParser.SplitFields(input);
 
             CollectionAssert.AreEquivalent(new[] { "11\n.", "22\n..\n..", "00" }, result);
         }
@@ -45,7 +45,7 @@ namespace MinesweeperKata.Tests
                 { new Point(1,1), 0 }
             };
 
-            var result = _inputParser.ToMinefield(input);
+            var result = _inputToMinefieldParser.ToMinefield(input);
 
             CollectionAssert.AreEquivalent(result.Values, expectedValues);
         }
