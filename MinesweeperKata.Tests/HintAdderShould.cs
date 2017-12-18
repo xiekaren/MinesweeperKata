@@ -13,67 +13,60 @@ namespace MinesweeperKata.Tests
             _hintAdder = new HintAdder();
         }
 
-        [Test]
-        public void AddHintsToField()
+        [TestCaseSource(nameof(GetHintsForFieldData))]
+        public void GetFieldWithHints(Dictionary<Point, int> minefieldValues, Dictionary<Point, int> expectedValues)
         {
-            var mineFieldValues = new Dictionary<Point, int>
-            {
-                {new Point(0,0), -1},
-                {new Point(0,1),  0},
-                {new Point(1,0), -1},
-                {new Point(1,1), -1}
-            };
-            var minefield = new Minefield(mineFieldValues);
-            var adjacentNeighbours = new List<Point>
-            {
-                new Point(0, 1),
-                new Point(0, 1),
-                new Point(0, 1),
-            };
+            var initialMineField = new Minefield(minefieldValues);
+            var expected = new Minefield(expectedValues);
 
-            var expectedValues = new Dictionary<Point, int>
-            {
-                {new Point(0,0), -1},
-                {new Point(0,1),  3},
-                {new Point(1,0), -1},
-                {new Point(1,1), -1}
-            };
+            var result = _hintAdder.GetFieldWithHints(initialMineField);
 
-            var result = _hintAdder.GetFieldWithHints(minefield, adjacentNeighbours);
-
-            CollectionAssert.AreEquivalent(expectedValues, result.Values);
+            CollectionAssert.AreEquivalent(expected.Values, result.Values);
         }
 
-        [Test]
-        public void AddHintsToField2()
+        public static IEnumerable<TestCaseData> GetHintsForFieldData
         {
-            var mineFieldValues = new Dictionary<Point, int>
+            get
             {
-                {new Point(0,0), -1},
-                {new Point(0,1),  0},
-                {new Point(1,0), -1},
-                {new Point(1,1),  0}
-            };
-            var minefield = new Minefield(mineFieldValues);
-            var adjacentNeighbours = new List<Point>
-            {
-                new Point(0, 1),
-                new Point(0, 1),
-                new Point(1, 1),
-                new Point(1, 1)
-            };
+                yield return new TestCaseData(
+                    new Dictionary<Point, int>
+                    {
+                        {new Point(0, 0), 0}
+                    },
+                    new Dictionary<Point, int>
+                    {
+                        {new Point(0, 0), 0}
+                    }
+                );
 
-            var expectedValues = new Dictionary<Point, int>
-            {
-                {new Point(0,0), -1},
-                {new Point(0,1),  2},
-                {new Point(1,0), -1},
-                {new Point(1,1),  2}
-            };
+                yield return new TestCaseData(
+                    new Dictionary<Point, int>
+                    {
+                        {new Point(0, 0), -1}, {new Point(0, 1),  0},
+                        {new Point(1, 0),  0}, {new Point(1, 1), -1},
+                    },
+                    new Dictionary<Point, int>
+                    {
+                        {new Point(0, 0), -1}, {new Point(0, 1),  2},
+                        {new Point(1, 0),  2}, {new Point(1, 1), -1},
+                    }
+                );
 
-            var result = _hintAdder.GetFieldWithHints(minefield, adjacentNeighbours);
-
-            CollectionAssert.AreEquivalent(expectedValues, result.Values);
+                yield return new TestCaseData(
+                    new Dictionary<Point, int>
+                    {
+                        {new Point(0, 0),  0}, {new Point(0, 1),  0},
+                        {new Point(1, 0), -1}, {new Point(1, 1),  0},
+                        {new Point(2, 0),  0}, {new Point(2, 1),  0},
+                    },
+                    new Dictionary<Point, int>
+                    {
+                        {new Point(0, 0),  1}, {new Point(0, 1), 1},
+                        {new Point(1, 0), -1}, {new Point(1, 1), 1},
+                        {new Point(2, 0),  1}, {new Point(2, 1), 1},
+                    }
+                );
+            }
         }
     }
 }

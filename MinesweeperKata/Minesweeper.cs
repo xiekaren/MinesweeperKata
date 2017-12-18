@@ -1,27 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace MinesweeperKata
+﻿namespace MinesweeperKata
 {
     public class Minesweeper
     {
-        private readonly FieldInspector _fieldInspector;
-        private readonly NeighbourInspector _neighbourInspector;
         private readonly HintAdder _hintAdder;
 
         public Minesweeper()
         {
-            _fieldInspector = new FieldInspector();
-            _neighbourInspector = new NeighbourInspector();
             _hintAdder = new HintAdder();
         }
 
-        public Minefield ShowHints(Minefield minefield)
+        public string Hints(string input)
         {
-            var mineLocations = _fieldInspector.GetMineLocations(minefield);
-            var emptySquaresNextToMines = _neighbourInspector.GetEmptyNeighboursForMines(minefield, mineLocations);
-            var fieldWithHints = _hintAdder.GetFieldWithHints(minefield, emptySquaresNextToMines);
-            return fieldWithHints;
+            return "";
+        }
+
+        public Minefield ShowHints(Minefield minefield)
+        {           
+            return _hintAdder.GetFieldWithHints(minefield);
         }
     }    
 }
