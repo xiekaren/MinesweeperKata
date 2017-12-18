@@ -58,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FieldInspectorShould.cs" />
+    <Compile Include="HintAdderShould.cs" />
     <Compile Include="MinesweeperShould.cs" />
     <Compile Include="NeighbourInspectorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace MinesweeperKata.Tests
@@ -14,23 +15,27 @@ namespace MinesweeperKata.Tests
         }
 
         [Test]
-        [Ignore("Ignore until we can get neighbour for point")]
-        public void GetMineNeighbours()
+        public void GetNeighboursAroundMines()
         {
             var mineFieldValues = new Dictionary<Point, int>
             {
                 {new Point(0, 0), -1},
                 {new Point(0, 1), 0},
-                {new Point(1, 0), 0},
-                {new Point(1, 1), 0}
+                {new Point(1, 0), -1},
+                {new Point(1, 1), -1}
             };
-            var mineLocations = new List<Point> { new Point(0, 0) };
             var mineField = new Minefield(mineFieldValues);
+            var mineLocations = new List<Point>
+            {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(1, 1)
+            };
             var expected = new List<Point>
             {
                 new Point(0, 1),
-                new Point(1, 0),
-                new Point(1, 1),
+                new Point(0, 1),
+                new Point(0, 1)
             };
 
             var result = _fieldInspector.GetEmptyNeighboursForMines(mineField, mineLocations);
