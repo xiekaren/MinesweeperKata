@@ -20,10 +20,10 @@ namespace MinesweeperKata
             return new Minefield(fieldValues);
         }
 
-        private static FieldSize ParseHeader(string header)
+        public FieldSize ParseHeader(string header)
         {
-            return new FieldSize {Width = int.Parse(header[0].ToString()),
-                Height = int.Parse(header[1].ToString())};
+            return new FieldSize {Height = int.Parse(header[0].ToString()),
+                Width = int.Parse(header[1].ToString())};
         }
 
         private static List<string> BuildField(FieldSize fieldSize, string[] fieldData)
