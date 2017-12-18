@@ -1,4 +1,6 @@
-﻿namespace MinesweeperKata
+﻿using System.Globalization;
+
+namespace MinesweeperKata
 {
     public class Point
     {
