@@ -1,4 +1,6 @@
-﻿namespace MinesweeperKata
+﻿using System;
+
+namespace MinesweeperKata
 {
     public class Minesweeper
     {

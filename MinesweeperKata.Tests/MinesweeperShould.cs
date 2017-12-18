@@ -17,6 +17,7 @@ namespace MinesweeperKata.Tests
                   ".",
 
                   "0")]
+        [Ignore("")]
         public void ShowHints(string input, string expectedOutput)
         {
             var result = _minesweeper.Hints(input);

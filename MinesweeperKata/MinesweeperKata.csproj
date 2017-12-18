@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FieldInspector.cs" />
+    <Compile Include="FieldSize.cs" />
     <Compile Include="HintAdder.cs" />
+    <Compile Include="InputParser.cs" />
     <Compile Include="Minefield.cs" />
     <Compile Include="Minesweeper.cs" />
     <Compile Include="NeighbourInspector.cs" />
