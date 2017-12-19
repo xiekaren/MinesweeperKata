@@ -1,39 +1,28 @@
-﻿namespace MinesweeperKata
+﻿using System.Text;
+
+namespace MinesweeperKata
 {
     public class Minesweeper
     {
-        private readonly HintAdder _hintAdder;
-        private readonly InputToMinefieldParser _inputToMinefieldParser;
-        private readonly Formatter _formatter;
+        private readonly InputParser _inputParser;
 
         public Minesweeper()
         {
-            _formatter = new Formatter();
-            _inputToMinefieldParser = new InputToMinefieldParser();
-            _hintAdder = new HintAdder();
+            _inputParser = new InputParser();
         }
 
         public string GetHints(string input)
         {
-            var fields = _inputToMinefieldParser.SplitFields(input);
-            var formattedOutput = "";
-            for (var fieldNumber = 0; fieldNumber < fields.Length; fieldNumber++)
+            var fields = _inputParser.SplitInputIntoFields(input);
+            var output = new StringBuilder();
+
+            for (var i = 0; i < fields.Count; i++)
             {
-                var header = _inputToMinefieldParser.ParseHeader(fields[fieldNumber]);
-                if (header.Height == 0 || header.Width == 0)
-                {
-                    break;
-                }
-
-                formattedOutput += $"Field #{fieldNumber+1}:\n";
-
-                var minefield = _inputToMinefieldParser.ToMinefield(fields[fieldNumber]);
-                var minefieldWithHints = _hintAdder.GetFieldWithHints(minefield);
-                var formattedMinefield = _formatter.FormatMinefield(header, minefieldWithHints);
-
-                formattedOutput += formattedMinefield + "\n\n";
+                output.Append($"Field {i + 1}:\n");
+                var field = _inputParser.ToField(fields[i]);
             }
-            return formattedOutput.Trim('\n');
+
+            return "";
         }
-    }    
+    }
 }
