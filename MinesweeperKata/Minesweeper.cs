@@ -13,7 +13,7 @@
             _hintAdder = new HintAdder();
         }
 
-        public string Hints(string input)
+        public string GetHints(string input)
         {
             var fields = _inputToMinefieldParser.SplitFields(input);
             var formattedOutput = "";
@@ -34,11 +34,6 @@
                 formattedOutput += formattedMinefield + "\n\n";
             }
             return formattedOutput.Trim('\n');
-        }
-
-        public Minefield ShowHints(Minefield minefield)
-        {           
-            return _hintAdder.GetFieldWithHints(minefield);
         }
     }    
 }

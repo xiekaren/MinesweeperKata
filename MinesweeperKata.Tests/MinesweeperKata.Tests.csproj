@@ -57,12 +57,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FormatterShould.cs" />
-    <Compile Include="FieldInspectorShould.cs" />
-    <Compile Include="HintAdderShould.cs" />
-    <Compile Include="InputToMinefieldParserShould.cs" />
+    <Compile Include="Presentation\FormatterShould.cs" />
+    <Compile Include="FieldHints\FieldInspectorShould.cs" />
+    <Compile Include="FieldHints\HintAdderShould.cs" />
+    <Compile Include="Parsing\InputToMinefieldParserShould.cs" />
     <Compile Include="MinesweeperShould.cs" />
-    <Compile Include="NeighbourInspectorShould.cs" />
+    <Compile Include="FieldHints\NeighbourInspectorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

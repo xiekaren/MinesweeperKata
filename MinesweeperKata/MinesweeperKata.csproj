@@ -43,20 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FieldInspector.cs" />
-    <Compile Include="FieldSize.cs" />
-    <Compile Include="Formatter.cs" />
-    <Compile Include="HintAdder.cs" />
-    <Compile Include="InputToMinefieldParser.cs" />
-    <Compile Include="Minefield.cs" />
+    <Compile Include="FieldHints\FieldInspector.cs" />
+    <Compile Include="DTO\FieldSize.cs" />
+    <Compile Include="Presentation\Formatter.cs" />
+    <Compile Include="FieldHints\HintAdder.cs" />
+    <Compile Include="Parsing\InputToMinefieldParser.cs" />
+    <Compile Include="DTO\Minefield.cs" />
     <Compile Include="Minesweeper.cs" />
-    <Compile Include="NeighbourInspector.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="FieldHints\NeighbourInspector.cs" />
+    <Compile Include="DTO\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

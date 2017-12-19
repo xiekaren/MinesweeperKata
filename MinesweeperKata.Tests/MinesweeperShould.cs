@@ -61,7 +61,7 @@ namespace MinesweeperKata.Tests
                   "1*100")]
         public void ShowHints(string input, string expectedOutput)
         {
-            var result = _minesweeper.Hints(input);
+            var result = _minesweeper.GetHints(input);
             
             Assert.AreEqual(expectedOutput, result);            
         }
