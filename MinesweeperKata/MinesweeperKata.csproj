@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Field.cs" />
+    <Compile Include="FieldHintMaker.cs" />
     <Compile Include="InputParser.cs" />
     <Compile Include="Minesweeper.cs" />
     <Compile Include="Program.cs" />
