@@ -68,7 +68,7 @@ namespace MinesweeperKata.Tests
             Assert.IsTrue(AreEqual(expected.Zones, result.Zones));
         }
 
-        private bool AreEqual(List<Zone> expected, List<Zone> actual)
+        private static bool AreEqual(List<Zone> expected, List<Zone> actual)
         {
             return actual.All(z => expected.Exists(x => z.X == x.X && z.Y == x.Y && z.HasMine == x.HasMine));
         }
