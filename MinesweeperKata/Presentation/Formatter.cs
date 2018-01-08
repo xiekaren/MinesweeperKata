@@ -5,7 +5,7 @@
         public string FormatMinefield(FieldSize size, Minefield field)
         {
             var fieldAsArray = MapToArray(size, field);
-            return MakePretty(size, fieldAsArray);
+            return MakePretty(size, fieldAsArray) + "\n\n";
         }
 
         private static string[,] MapToArray(FieldSize size, Minefield field)

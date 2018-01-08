@@ -27,7 +27,7 @@ namespace MinesweeperKata.Tests
             var size = new FieldSize{ Width = 2, Height = 2 };
             var field = new Minefield(minefieldValues);
             const string expected = "2*\n" +
-                                    "*2";
+                                    "*2\n\n";
 
             var result = _formatter.FormatMinefield(size, field);
 
