@@ -8,6 +8,11 @@
             return MakePretty(size, fieldAsArray) + "\n\n";
         }
 
+        public string FormatFieldNumber(int fieldNumber)
+        {
+            return $"Field #{fieldNumber + 1}:\n";
+        }
+
         private static string[,] MapToArray(FieldSize size, Minefield field)
         {
             var formattedField = new string[size.Height, size.Width];

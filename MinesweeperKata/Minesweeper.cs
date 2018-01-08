@@ -20,22 +20,20 @@
 
             for (var fieldNumber = 0; fieldNumber < fields.Length; fieldNumber++)
             {
-                var header = _inputToMinefieldParser.ParseHeader(fields[fieldNumber]);
-                if (IsEndOfInput(header)) break;
-                formattedOutput += FormatFieldNumber(fieldNumber);
+                var field = fields[fieldNumber];
+                var fieldSize = _inputToMinefieldParser.ParseHeader(field);
+                if (IsEndOfInput(fieldSize)) break;
 
-                var minefield = _inputToMinefieldParser.ToMinefield(fields[fieldNumber]);
+                formattedOutput += _formatter.FormatFieldNumber(fieldNumber);
+
+                var minefield = _inputToMinefieldParser.ToMinefield(field);
                 var minefieldWithHints = _hintAdder.GetFieldWithHints(minefield);
-                var formattedMinefield = _formatter.FormatMinefield(header, minefieldWithHints);
+                var formattedMinefield = _formatter.FormatMinefield(fieldSize, minefieldWithHints);
 
                 formattedOutput += formattedMinefield;
             }
-            return formattedOutput.Trim('\n');
-        }
 
-        private static string FormatFieldNumber(int fieldNumber)
-        {
-            return $"Field #{fieldNumber+1}:\n";
+            return formattedOutput.Trim('\n');
         }
 
         private static bool IsEndOfInput(FieldSize header)
