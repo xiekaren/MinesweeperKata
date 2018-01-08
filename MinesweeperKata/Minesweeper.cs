@@ -1,4 +1,7 @@
-﻿namespace MinesweeperKata
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace MinesweeperKata
 {
     public class Minesweeper
     {
@@ -39,6 +42,11 @@
         private static bool IsEndOfInput(FieldSize header)
         {
             return header.Height == 0 || header.Width == 0;
+        }
+
+        public IEnumerable<Minefield> TransformInputToMinefields(string input)
+        {
+            return new List<Minefield>();
         }
     }    
 }
