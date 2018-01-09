@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MinesweeperKata.DTO;
 
 namespace MinesweeperKata
@@ -19,7 +21,7 @@ namespace MinesweeperKata
 
         public string GetHints(string input)
         {
-            var fields = _inputToMinefieldParser.SplitFields(input);
+            var fields = _inputToMinefieldParser.SplitInputFields(input);
             var formattedOutput = "";
 
             for (var fieldNumber = 0; fieldNumber < fields.Length; fieldNumber++)
@@ -47,14 +49,9 @@ namespace MinesweeperKata
 
         public IEnumerable<Field> TransformInputToMinefields(string input)
         {
-            return new List<Field>
-            {
-                new Field
-                {
-                    Rows = 1, Columns = 1,
-                    Locations = new List<Location> {new Location {Row = 0, Column = 0, IsMine = false} }
-                }
-            };
+            var inputFields = _inputToMinefieldParser.SplitInputFields(input);
+            var result = inputFields.Select(inputField => _inputToMinefieldParser.ToField(inputField)).ToList();
+            return result;
         }
     }    
 }

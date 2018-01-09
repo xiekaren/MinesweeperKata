@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MinesweeperKata.DTO;
@@ -112,6 +113,47 @@ namespace MinesweeperKata.Tests
                 {
                     Rows = 1, Columns = 1,
                     Locations = new List<Location> {new Location {Row = 0, Column = 0, IsMine = false} }
+                }
+            };
+
+            var result = _minesweeper.TransformInputToMinefields(formattedInput);
+
+            CollectionAssert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void TransformInputToMinefield2()
+        {
+            var input = new[]
+            {
+                "11",
+                ".",
+                "",
+                "22",
+                "..",
+                ".*",
+                "",
+                "00"
+            };
+            var formattedInput = FormatInput(input);
+
+            var expected = new List<Field>
+            {
+                new Field
+                {
+                    Rows = 1, Columns = 1,
+                    Locations = new List<Location> {new Location {Row = 0, Column = 0, IsMine = false}}
+                },
+                new Field
+                {
+                    Rows = 2, Columns = 2,
+                    Locations = new List<Location>
+                    {
+                        new Location {Row = 0, Column = 0, IsMine = false},
+                        new Location {Row = 0, Column = 1, IsMine = false},
+                        new Location {Row = 1, Column = 0, IsMine = false},
+                        new Location {Row = 1, Column = 1, IsMine = true}
+                    }
                 }
             };
 

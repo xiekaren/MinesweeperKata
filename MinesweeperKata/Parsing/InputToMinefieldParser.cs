@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using MinesweeperKata.DTO;
 
 namespace MinesweeperKata
 {
     public class InputToMinefieldParser
     {
-        public string[] SplitFields(string input)
+        public string[] SplitInputFields(string input)
         {
-            return input.Split(new[] { "\n\n" }, StringSplitOptions.None);
+            return input.Split(new[] { "\n\n" }, StringSplitOptions.None)
+                .Where(inputField => inputField != "00").ToArray();
         }
 
         public Minefield ToMinefield(string inputFieldData)
@@ -54,6 +57,61 @@ namespace MinesweeperKata
                 }
             }
             return result;
+        }
+
+        public Field ToField(string inputField)
+        {
+            var rowsColumnsLocations = inputField.Split('\n');
+            return new Field
+            {
+                Rows = ParseNumberOfRows(rowsColumnsLocations),
+                Columns = ParseNumberOfColumns(rowsColumnsLocations),
+                Locations = ParseLocations(rowsColumnsLocations)
+            };
+        }
+
+        private IEnumerable<Location> ParseLocations(IReadOnlyList<string> rowsColumnsLocations)
+        {
+            var rows = ParseNumberOfRows(rowsColumnsLocations);
+            var columns = ParseNumberOfColumns(rowsColumnsLocations);
+            var locations = ExtractLocations(rowsColumnsLocations);
+            
+            return BuildLocations(rows, columns, locations);
+        }
+
+        private static IEnumerable<Location> BuildLocations(int rows, int columns, List<string> locations)
+        {
+            var result = new List<Location>();
+
+            for (var row = 0; row < rows; row++)
+            {
+                for (var column = 0; column < columns; column++)
+                {
+                    result.Add(new Location
+                    {
+                        Row = row,
+                        Column = column,
+                        IsMine = locations[row][column] == '*'
+                    });
+                }
+            }
+
+            return result;
+        }
+
+        private List<string> ExtractLocations(IReadOnlyList<string> rowsColumnsLocations)
+        {
+            return rowsColumnsLocations.Skip(1).Take(rowsColumnsLocations.Count - 1).ToList();
+        }
+
+        private static int ParseNumberOfColumns(IReadOnlyList<string> rowsColumnsLocations)
+        {
+            return int.Parse(rowsColumnsLocations[0][1].ToString());
+        }
+
+        private static int ParseNumberOfRows(IReadOnlyList<string> rowsColumnsLocations)
+        {
+            return int.Parse(rowsColumnsLocations[0][0].ToString());
         }
     }
 }

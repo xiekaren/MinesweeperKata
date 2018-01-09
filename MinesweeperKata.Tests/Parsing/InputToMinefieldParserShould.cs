@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MinesweeperKata.DTO;
 using NUnit.Framework;
 
 namespace MinesweeperKata.Tests
@@ -26,9 +27,9 @@ namespace MinesweeperKata.Tests
                                  "\n\n" +
                                  "00";
 
-            var result = _inputToMinefieldParser.SplitFields(input);
+            var result = _inputToMinefieldParser.SplitInputFields(input);
 
-            CollectionAssert.AreEquivalent(new[] { "11\n.", "22\n..\n..", "00" }, result);
+            CollectionAssert.AreEquivalent(new[] { "11\n.", "22\n..\n.." }, result);
         }
 
         [Test]
@@ -48,6 +49,25 @@ namespace MinesweeperKata.Tests
             var result = _inputToMinefieldParser.ToMinefield(input);
 
             CollectionAssert.AreEquivalent(result.Values, expectedValues);
+        }
+
+        [Test]
+        public void ParseTextToField()
+        {
+            const string input = "22\n" +
+                                 ".*\n" +
+                                 "*.";
+
+            var expected = new Field
+            {
+                Rows = 2,
+                Columns = 2,
+                Locations = new List<Location>()
+            };
+
+            var result = _inputToMinefieldParser.ToField(input);
+
+            Assert.AreEqual(result, expected);
         }
     }
 }
