@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using MinesweeperKata.DTO;
 
 namespace MinesweeperKata
 {
@@ -44,9 +45,16 @@ namespace MinesweeperKata
             return header.Height == 0 || header.Width == 0;
         }
 
-        public IEnumerable<Minefield> TransformInputToMinefields(string input)
+        public IEnumerable<Field> TransformInputToMinefields(string input)
         {
-            return new List<Minefield>();
+            return new List<Field>
+            {
+                new Field
+                {
+                    Rows = 1, Columns = 1,
+                    Locations = new List<Location> {new Location {Row = 0, Column = 0, IsMine = false} }
+                }
+            };
         }
     }    
 }

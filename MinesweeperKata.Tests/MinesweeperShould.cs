@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using MinesweeperKata.DTO;
 using NUnit.Framework;
 
 namespace MinesweeperKata.Tests
@@ -15,86 +17,113 @@ namespace MinesweeperKata.Tests
             _minesweeper = new Minesweeper();
         }
 
-        [TestCase("11\n" +
-                  ".\n" +
-                  "\n" +
-                  "00",
-            "Field #1:\n" +
-            "0")]
-        [TestCase("11\n" +
-                  ".\n" +
-                  "\n" +
-                  "22\n" +
-                  "..\n" +
-                  ".*\n" +
-                  "\n" +
-                  "00",
-            "Field #1:\n" +
-            "0\n" +
-            "\n" +
-            "Field #2:\n" +
-            "11\n" +
-            "1*")]
-        [TestCase("44\n" +
-                  "*...\n" +
-                  "....\n" +
-                  ".*..\n" +
-                  "....\n" +
-                  "\n" +
-                  "35\n" +
-                  "**...\n" +
-                  ".....\n" +
-                  ".*...\n" +
-                  "\n" +
-                  "00",
-            "Field #1:\n" +
-            "*100\n" +
-            "2210\n" +
-            "1*10\n" +
-            "1110\n" +
-            "\n" +
-            "Field #2:\n" +
-            "**100\n" +
-            "33200\n" +
-            "1*100")]
-        public void ShowHints(string input, string expectedOutput)
+        [TestCase(
+            new []
+            {
+                "11",
+                ".",
+                "",
+                "00"
+            },
+            new []
+            {
+                "Field #1:",
+                "0"
+            }
+        )]
+        [TestCase(
+            new []
+            {
+                "11",
+                ".",
+                "",
+                "22",
+                "..",
+                ".*",
+                "",
+                "00"
+            },
+            new []
+            {
+                "Field #1:",
+                "0",
+                "",
+                "Field #2:",
+                "11",
+                "1*"
+            }
+        )]
+        [TestCase(
+            new []
+            {
+                "44",
+                "*...",
+                "....",
+                ".*..",
+                "....",
+                "",
+                "35",
+                "**...",
+                ".....",
+                ".*...",
+                "",
+                "00"
+            },
+            new []
+            {
+                "Field #1:",
+                "*100",
+                "2210",
+                "1*10",
+                "1110",
+                "",
+                "Field #2:",
+                "**100",
+                "33200",
+                "1*100"
+            }
+            )]
+        public void ShowHints(string[] input, string[] expectedOutput)
         {
-            var result = _minesweeper.GetHints(input);
+            var formattedOutput = FormatInput(expectedOutput);
+            var formattedInput = FormatInput(input);
 
-            Assert.AreEqual(expectedOutput, result);
+            var result = _minesweeper.GetHints(formattedInput);
+
+            Assert.AreEqual(formattedOutput, result);
         }
 
         [Test]
         public void TransformInputToMinefield()
         {
-            const string input = "11\n" +
-                                 ".\n" +
-                                 "\n" +
-                                 "\n" +
-                                 "11\n" +
-                                 "*\n" +
-                                 "\n" +
-                                 "00";
-
-            var expected = new List<Minefield>
+            var input = new[]
             {
-                new Minefield(new Dictionary<Point, int>()),
-                new Minefield(new Dictionary<Point, int>())
+                "11",
+                ".",
+                "",
+
+                "00"
+            };
+            var formattedInput = FormatInput(input);
+
+            var expected = new List<Field>
+            {
+                new Field
+                {
+                    Rows = 1, Columns = 1,
+                    Locations = new List<Location> {new Location {Row = 0, Column = 0, IsMine = false} }
+                }
             };
 
-            var result = _minesweeper.TransformInputToMinefields(input);
-            
+            var result = _minesweeper.TransformInputToMinefields(formattedInput);
+
             CollectionAssert.AreEqual(expected, result);
         }
 
-        private string FormatInput(IEnumerable<string> input)
+        private static string FormatInput(IEnumerable<string> input)
         {
-            var builder = new StringBuilder();
-            foreach (var s in input)
-            {
-                builder.Append(s);
-            }
-            return builder.ToString();
+            var formattedInput = input.Aggregate("", (current, line) => current + (line + "\n"));
+            return formattedInput.TrimEnd('\n');
         }
     }
 }
