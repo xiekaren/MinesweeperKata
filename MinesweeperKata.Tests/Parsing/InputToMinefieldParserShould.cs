@@ -50,24 +50,5 @@ namespace MinesweeperKata.Tests
 
             CollectionAssert.AreEquivalent(result.Values, expectedValues);
         }
-
-        [Test]
-        public void ParseTextToField()
-        {
-            const string input = "22\n" +
-                                 ".*\n" +
-                                 "*.";
-
-            var expected = new Field
-            {
-                Rows = 2,
-                Columns = 2,
-                Locations = new List<Location>()
-            };
-
-            var result = _inputToMinefieldParser.ToField(input);
-
-            Assert.AreEqual(result, expected);
-        }
     }
 }

@@ -12,7 +12,9 @@ namespace MinesweeperKata.DTO
         public override bool Equals(object obj)
         {
             var other = (Field)obj;
-            return other != null && (other.Rows == Rows && other.Columns == Columns) && other.Locations.All(x => Locations.Contains(x));
+            return other != null 
+                && (other.Rows == Rows && other.Columns == Columns) 
+                && other.Locations.All(x => Locations.Any(l => l.Equals(x)));
         }
 
         public override int GetHashCode() => Rows.GetHashCode() + Columns.GetHashCode() + Locations.GetHashCode();

@@ -47,6 +47,7 @@
     <Compile Include="DTO\Location.cs" />
     <Compile Include="FieldHints\FieldInspector.cs" />
     <Compile Include="DTO\FieldSize.cs" />
+    <Compile Include="Parsing\InputTransformer.cs" />
     <Compile Include="Presentation\Formatter.cs" />
     <Compile Include="FieldHints\HintAdder.cs" />
     <Compile Include="Parsing\InputToMinefieldParser.cs" />

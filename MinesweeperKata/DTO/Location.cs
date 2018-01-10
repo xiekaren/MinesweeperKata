@@ -9,7 +9,7 @@
         public override bool Equals(object obj)
         {
             var other = (Location)obj;
-            return other != null && (other.Row == Row && other.Column == Column);
+            return other != null && (other.Row == Row && other.Column == Column && other.IsMine == IsMine);
         }
 
         public override int GetHashCode() => Row.GetHashCode() + Column.GetHashCode();
