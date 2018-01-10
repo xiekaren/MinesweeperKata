@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\Field.cs" />
+    <Compile Include="DTO\HintField.cs" />
     <Compile Include="DTO\Location.cs" />
     <Compile Include="FieldHints\FieldInspector.cs" />
     <Compile Include="DTO\FieldSize.cs" />

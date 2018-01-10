@@ -116,7 +116,7 @@ namespace MinesweeperKata.Tests
                 }
             };
 
-            var result = _minesweeper.TransformInputToMinefields(formattedInput);
+            var result = _minesweeper.InputToFields(formattedInput);
 
             CollectionAssert.AreEqual(expected, result);
         }
@@ -157,15 +157,65 @@ namespace MinesweeperKata.Tests
                 }
             };
 
-            var result = _minesweeper.TransformInputToMinefields(formattedInput);
+            var result = _minesweeper.InputToFields(formattedInput);
+
+            CollectionAssert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void TransformFieldsToHints()
+        {
+            var fields = new List<Field>
+            {
+                new Field
+                {
+                    Rows = 1, Columns = 1,
+                    Locations = new List<Location> {new Location {Row = 0, Column = 0, IsMine = false}}
+                },
+                new Field
+                {
+                    Rows = 2, Columns = 2,
+                    Locations = new List<Location>
+                    {
+                        new Location {Row = 0, Column = 0, IsMine = false},
+                        new Location {Row = 0, Column = 1, IsMine = true},
+                        new Location {Row = 1, Column = 0, IsMine = true},
+                        new Location {Row = 1, Column = 1, IsMine = false}
+                    }
+                }
+            };
+
+            var expected = new List<HintField>
+            {
+                new HintField
+                {
+                    Rows = 1, Columns = 1,
+                    FieldHints = new List<string>
+                    {
+                        "0"
+                    }
+                },
+                new HintField
+                {
+                    Rows = 1, Columns = 1,
+                    FieldHints = new List<string>
+                    {
+                        "2", "*",
+                        "*", "2"
+                    }
+                }
+            };
+
+            var result = _minesweeper.FieldsToHints(fields);
 
             CollectionAssert.AreEqual(expected, result);
         }
 
         private static string FormatInput(IEnumerable<string> input)
         {
-            var formattedInput = input.Aggregate("", (current, line) => current + (line + "\n"));
+            var formattedInput = input.Aggregate("", (current, line) => current + line + "\n");
             return formattedInput.TrimEnd('\n');
         }
     }
+
 }
