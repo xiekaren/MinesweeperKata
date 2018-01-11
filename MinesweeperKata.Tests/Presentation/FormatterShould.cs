@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using MinesweeperKata.DTO;
+using MinesweeperKata.Presentation;
 using NUnit.Framework;
 
 namespace MinesweeperKata.Tests
@@ -15,23 +17,75 @@ namespace MinesweeperKata.Tests
         }
 
         [Test]
-        public void FormatMinefield()
+        public void FormatHints()
         {
-            var minefieldValues = new Dictionary<Point, int>
+            var hints = new List<HintField>
             {
-                {new Point(0, 0), 2},
-                {new Point(0, 1), -1},
-                {new Point(1, 0), -1},
-                {new Point(1, 1), 2},
+                new HintField
+                {
+                    Rows = 1, Columns = 1,
+                    FieldHints = new List<string>
+                    {
+                        "0"
+                    }
+                },
+                new HintField
+                {
+                    Rows = 2, Columns = 2,
+                    FieldHints = new List<string>
+                    {
+                        "2", "*",
+                        "*", "2"
+                    }
+                }
             };
-            var size = new FieldSize{ Width = 2, Height = 2 };
-            var field = new Minefield(minefieldValues);
-            const string expected = "2*\n" +
-                                    "*2\n\n";
 
-            var result = _formatter.FormatMinefield(size, field);
+            const string expected = "Field #1:\n" +
+                                    "0\n" +
+                                    "\n" +
+                                    "Field #2:\n" +
+                                    "2*\n" +
+                                    "*2";
 
-            Assert.AreEqual(expected, result);
+            var actual = _formatter.FormatHints(hints);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FormatSingleHint()
+        {
+            var hints = new List<HintField>
+            {
+                new HintField
+                {
+                    Rows = 1, Columns = 1,
+                    FieldHints = new List<string>
+                    {
+                        "0"
+                    }
+                },
+                new HintField
+                {
+                    Rows = 2, Columns = 2,
+                    FieldHints = new List<string>
+                    {
+                        "2", "*",
+                        "*", "2"
+                    }
+                }
+            };
+
+            const string expected = "Field #1:\n" +
+                                    "0\n" +
+                                    "\n" +
+                                    "Field #2:\n" +
+                                    "2*\n" +
+                                    "*2";
+
+            var actual = _formatter.FormatHints(hints);
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

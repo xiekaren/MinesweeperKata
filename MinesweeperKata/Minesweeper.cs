@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MinesweeperKata.DTO;
 using MinesweeperKata.Parsing;
+using MinesweeperKata.Presentation;
 
 namespace MinesweeperKata
 {
@@ -21,30 +22,9 @@ namespace MinesweeperKata
 
         public string GetHints(string input)
         {
-            var fields = _inputTransformer.SplitInputFields(input);
-            var formattedOutput = "";
-
-            for (var fieldNumber = 0; fieldNumber < fields.Length; fieldNumber++)
-            {
-                var field = fields[fieldNumber];
-                var fieldSize = _inputTransformer.ParseHeader(field);
-                if (IsEndOfInput(fieldSize)) break;
-
-                formattedOutput += _formatter.FormatFieldNumber(fieldNumber);
-
-                var minefield = _inputTransformer.ToMinefield(field);
-                var minefieldWithHints = _hintAdder.GetFieldWithHints(minefield);
-                var formattedMinefield = _formatter.FormatMinefield(fieldSize, minefieldWithHints);
-
-                formattedOutput += formattedMinefield;
-            }
-
-            return formattedOutput.Trim('\n');
-        }
-
-        private static bool IsEndOfInput(FieldSize header)
-        {
-            return header.Height == 0 || header.Width == 0;
+            var fields = InputToFields(input);
+            var hints = FieldsToHints(fields);
+            return _formatter.FormatHints(hints);
         }
 
         public IEnumerable<Field> InputToFields(string input)
