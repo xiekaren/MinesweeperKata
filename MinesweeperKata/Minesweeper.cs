@@ -9,7 +9,6 @@ namespace MinesweeperKata
 {
     public class Minesweeper
     {
-        private readonly HintAdder _hintAdder;
         private readonly InputToMinefieldParser _inputTransformer;
         private readonly Formatter _formatter;
 
@@ -17,7 +16,6 @@ namespace MinesweeperKata
         {
             _formatter = new Formatter();
             _inputTransformer = new InputToMinefieldParser();
-            _hintAdder = new HintAdder();
         }
 
         public string GetHints(string input)
