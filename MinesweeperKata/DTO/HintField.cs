@@ -7,12 +7,14 @@ namespace MinesweeperKata.DTO
     {
         public int Rows { get; set; }
         public int Columns { get; set; }
-        public List<string> FieldHints { get; set; }
+        public IEnumerable<string> FieldHints { get; set; }
 
         public override bool Equals(object obj)
         {
             var other = (HintField)obj;
-            return other != null && other.Rows == Rows && other.Columns == Columns && other.FieldHints.All(x => FieldHints.Any(l => l.Equals(x)));
+            return other != null 
+                && Rows == other.Rows && Columns == other.Columns 
+                && FieldHints.SequenceEqual(other.FieldHints);
         }
 
         public override int GetHashCode() => Rows.GetHashCode() + Columns.GetHashCode() + FieldHints.GetHashCode();

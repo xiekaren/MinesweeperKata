@@ -197,7 +197,7 @@ namespace MinesweeperKata.Tests
                 },
                 new HintField
                 {
-                    Rows = 1, Columns = 1,
+                    Rows = 2, Columns = 2,
                     FieldHints = new List<string>
                     {
                         "2", "*",

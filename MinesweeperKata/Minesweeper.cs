@@ -65,7 +65,7 @@ namespace MinesweeperKata
                 .ToList();
         }
 
-        private List<string> GetHints(Field field)
+        private IEnumerable<string> GetHints(Field field)
         {
             var hints = new List<string>();
 
