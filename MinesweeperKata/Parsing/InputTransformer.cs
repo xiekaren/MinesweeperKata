@@ -20,26 +20,18 @@ namespace MinesweeperKata.Parsing
             {
                 Rows = _extractor.GetNumberOfRows(inputField),
                 Columns = _extractor.GetNumberOfColumns(inputField),
-                Locations = ParseLocations(inputField)
+                Locations = BuildLocations(inputField)
             };
         }
 
-        private IEnumerable<Location> ParseLocations(string inputField)
+        private IEnumerable<Location> BuildLocations(string inputField)
         {
-            var rows = _extractor.GetNumberOfRows(inputField);
-            var columns = _extractor.GetNumberOfColumns(inputField);
             var locations = _extractor.GetLocations(inputField);
-
-            return BuildLocations(rows, columns, locations);
-        }
-
-        private static IEnumerable<Location> BuildLocations(int rows, int columns, IReadOnlyList<string> locations)
-        {
             var result = new List<Location>();
 
-            for (var row = 0; row < rows; row++)
+            for (var row = 0; row < locations.Count; row++)
             {
-                for (var column = 0; column < columns; column++)
+                for (var column = 0; column < locations[0].Length; column++)
                 {
                     result.Add(new Location
                     {
@@ -51,12 +43,6 @@ namespace MinesweeperKata.Parsing
             }
 
             return result;
-        }
-
-        public IEnumerable<string> SplitInputFields(string input)
-        {
-            return input.Split(new[] {"\n\n"}, StringSplitOptions.None).Where(inputField => inputField != "00")
-                .ToArray();
         }
     }
 }

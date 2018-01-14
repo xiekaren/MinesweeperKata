@@ -10,12 +10,14 @@ namespace MinesweeperKata
     public class Minesweeper
     {
         private readonly InputTransformer _transformer;
+        private readonly InputCleanser _cleanser;
         private readonly Formatter _formatter;
 
         public Minesweeper()
         {
             _formatter = new Formatter();
             _transformer = new InputTransformer(new InputExtractor());
+            _cleanser = new InputCleanser();
         }
 
         public string GetHints(string input)
@@ -27,7 +29,7 @@ namespace MinesweeperKata
 
         public IEnumerable<Field> InputToFields(string input)
         {
-            var inputFields = _transformer.SplitInputFields(input);
+            var inputFields = _cleanser.SplitInputFields(input);
             return inputFields.Select(inputField => _transformer.ToField(inputField)).ToList();
         }
 

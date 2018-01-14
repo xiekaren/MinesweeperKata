@@ -17,23 +17,6 @@ namespace MinesweeperKata.Tests.Parsing
         }
 
         [Test]
-        public void SplitFields()
-        {
-            const string input = "11\n" +
-                                 "." +
-                                 "\n\n" +
-                                 "22\n" +
-                                 "..\n" +
-                                 ".." +
-                                 "\n\n" +
-                                 "00";
-
-            var result = _inputTransformer.SplitInputFields(input);
-
-            CollectionAssert.AreEquivalent(new[] { "11\n.", "22\n..\n.." }, result);
-        }
-
-        [Test]
         public void ParseTextToField()
         {
             const string input = "22\n" +
