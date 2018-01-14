@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using MinesweeperKata.DTO;
 
@@ -59,6 +61,12 @@ namespace MinesweeperKata.Parsing
         private static int ExtractNumberOfRows(IReadOnlyList<string> rowsColumnsLocations)
         {
             return int.Parse(rowsColumnsLocations[0][0].ToString());
+        }
+
+        public IEnumerable<string> SplitInputFields(string input)
+        {
+            return input.Split(new[] {"\n\n"}, StringSplitOptions.None).Where(inputField => inputField != "00")
+                .ToArray();
         }
     }
 }

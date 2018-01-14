@@ -61,7 +61,6 @@
     <Compile Include="Presentation\FormatterShould.cs" />
     <Compile Include="FieldHints\FieldInspectorShould.cs" />
     <Compile Include="FieldHints\HintAdderShould.cs" />
-    <Compile Include="Parsing\InputToMinefieldParserShould.cs" />
     <Compile Include="MinesweeperShould.cs" />
     <Compile Include="FieldHints\NeighbourInspectorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

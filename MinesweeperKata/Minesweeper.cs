@@ -9,13 +9,13 @@ namespace MinesweeperKata
 {
     public class Minesweeper
     {
-        private readonly InputToMinefieldParser _inputTransformer;
+        private readonly InputTransformer _transformer;
         private readonly Formatter _formatter;
 
         public Minesweeper()
         {
             _formatter = new Formatter();
-            _inputTransformer = new InputToMinefieldParser();
+            _transformer = new InputTransformer();
         }
 
         public string GetHints(string input)
@@ -27,9 +27,8 @@ namespace MinesweeperKata
 
         public IEnumerable<Field> InputToFields(string input)
         {
-            var inputTransformer = new InputTransformer();
-            var inputFields = _inputTransformer.SplitInputFields(input);
-            return inputFields.Select(inputField => inputTransformer.ToField(inputField)).ToList();
+            var inputFields = _transformer.SplitInputFields(input);
+            return inputFields.Select(inputField => _transformer.ToField(inputField)).ToList();
         }
 
         public IEnumerable<HintField> FieldsToHints(IEnumerable<Field> fields)

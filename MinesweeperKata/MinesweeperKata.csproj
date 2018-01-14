@@ -51,7 +51,6 @@
     <Compile Include="Parsing\InputTransformer.cs" />
     <Compile Include="Presentation\Formatter.cs" />
     <Compile Include="FieldHints\HintAdder.cs" />
-    <Compile Include="Parsing\InputToMinefieldParser.cs" />
     <Compile Include="DTO\Minefield.cs" />
     <Compile Include="Minesweeper.cs" />
     <Compile Include="FieldHints\NeighbourInspector.cs" />
