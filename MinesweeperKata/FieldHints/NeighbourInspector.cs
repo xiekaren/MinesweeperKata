@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MinesweeperKata.DTO;
 
 namespace MinesweeperKata
 {
@@ -38,6 +41,31 @@ namespace MinesweeperKata
             }
 
             return neighbours;
+        }
+
+        public int CountMinesAroundPoint(int row, int column, Field field)
+        {
+            var minRow = Math.Max(0, row - 1);
+            var maxRow = Math.Min(field.Rows, row + 1);
+            var minColumn = Math.Max(0, column - 1);
+            var maxColumn = Math.Min(field.Columns, column + 1);
+
+            var mineCount = 0;
+
+            for (var rowIndex = minRow; rowIndex <= maxRow; rowIndex++)
+            {
+                for (var columnIndex = minColumn; columnIndex <= maxColumn; columnIndex++)
+                {
+                    if (rowIndex == row && columnIndex == column) continue;
+
+                    if (field.Locations.Any(x => x.Row == rowIndex && x.Column == columnIndex && x.IsMine))
+                    {
+                        mineCount++;
+                    }
+                }
+            }
+
+            return mineCount;
         }
     }
 }

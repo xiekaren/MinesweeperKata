@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MinesweeperKata.DTO;
 using NUnit.Framework;
 
 namespace MinesweeperKata.Tests
@@ -11,6 +12,26 @@ namespace MinesweeperKata.Tests
         public void SetUp()
         {
             _fieldInspector = new NeighbourInspector();
+        }
+
+        [Test]
+        public void CountMineNeighbours()
+        {
+            var field = new Field
+            {
+                Rows = 3,
+                Columns = 2,
+                Locations = new List<Location>
+                {
+                    new Location { Row = 0, Column = 0, IsMine = true }, new Location {Row = 0, Column = 1, IsMine = false },
+                    new Location { Row = 1, Column = 0, IsMine = false },new Location {Row = 1, Column = 1, IsMine = false },
+                    new Location { Row = 2, Column = 0, IsMine = true }, new Location {Row = 2, Column = 1, IsMine = true },
+                }
+            };
+
+            var result = _fieldInspector.CountMinesAroundPoint(1, 0, field);
+
+            Assert.AreEqual(3, result);
         }
 
         [Test]
@@ -59,8 +80,10 @@ namespace MinesweeperKata.Tests
                     new Point(0, 0),
                     new Dictionary<Point, int>
                     {
-                        {new Point(0, 0), -1}, {new Point(0, 1), 0},
-                        {new Point(1, 0), 0}, {new Point(1, 1), 0}
+                        {new Point(0, 0), -1},
+                        {new Point(0, 1), 0},
+                        {new Point(1, 0), 0},
+                        {new Point(1, 1), 0}
                     },
                     new List<Point>
                     {
@@ -74,8 +97,10 @@ namespace MinesweeperKata.Tests
                     new Point(0, 0),
                     new Dictionary<Point, int>
                     {
-                        {new Point(0, 0), 0}, {new Point(0, 1), -1},
-                        {new Point(1, 0), -1}, {new Point(1, 1), 0},
+                        {new Point(0, 0), 0},
+                        {new Point(0, 1), -1},
+                        {new Point(1, 0), -1},
+                        {new Point(1, 1), 0},
                     },
                     new List<Point>
                     {
@@ -87,9 +112,15 @@ namespace MinesweeperKata.Tests
                     new Point(1, 1),
                     new Dictionary<Point, int>
                     {
-                        {new Point(0, 0), 0}, {new Point(0, 1), 0}, {new Point(0, 2), 0},
-                        {new Point(1, 0), 0}, {new Point(1, 1), -1}, {new Point(1, 2), 0},
-                        {new Point(2, 0), 0}, {new Point(2, 1), 0}, {new Point(2, 2), 0}
+                        {new Point(0, 0), 0},
+                        {new Point(0, 1), 0},
+                        {new Point(0, 2), 0},
+                        {new Point(1, 0), 0},
+                        {new Point(1, 1), -1},
+                        {new Point(1, 2), 0},
+                        {new Point(2, 0), 0},
+                        {new Point(2, 1), 0},
+                        {new Point(2, 2), 0}
                     },
                     new List<Point>
                     {

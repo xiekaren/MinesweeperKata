@@ -61,7 +61,6 @@
     <Compile Include="Parsing\InputExtractorShould.cs" />
     <Compile Include="Parsing\InputTransformerShould.cs" />
     <Compile Include="Presentation\FormatterShould.cs" />
-    <Compile Include="FieldHints\FieldInspectorShould.cs" />
     <Compile Include="MinesweeperShould.cs" />
     <Compile Include="FieldHints\NeighbourInspectorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
