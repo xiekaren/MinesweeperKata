@@ -13,7 +13,7 @@ namespace MinesweeperKata.Tests.Parsing
         [SetUp]
         public void Setup()
         {
-            _inputTransformer = new InputTransformer();
+            _inputTransformer = new InputTransformer(new InputExtractor());
         }
 
         [Test]

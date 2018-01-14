@@ -15,7 +15,7 @@ namespace MinesweeperKata
         public Minesweeper()
         {
             _formatter = new Formatter();
-            _transformer = new InputTransformer();
+            _transformer = new InputTransformer(new InputExtractor());
         }
 
         public string GetHints(string input)
