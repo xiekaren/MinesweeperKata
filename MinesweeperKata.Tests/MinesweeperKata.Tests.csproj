@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FieldHints\HinterShould.cs" />
     <Compile Include="Parsing\InputCleanserShould.cs" />
     <Compile Include="Parsing\InputExtractorShould.cs" />
     <Compile Include="Parsing\InputTransformerShould.cs" />
