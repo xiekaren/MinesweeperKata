@@ -22,14 +22,19 @@ namespace MinesweeperKata.Presentation
 
         public string FormatField(int fieldNumber, HintField hintField)
         {
-            var formatted = "";
+            return FieldHeader(fieldNumber) + FieldHints(hintField);
+        }
 
+        private static string FieldHints(HintField hintField)
+        {
             var hintsAsString = hintField.FieldHints.Aggregate("", (current, fieldHint) => current + fieldHint);
             var hintsWithLineBreaks = SplitHints(hintsAsString, hintField.Columns);
+            return hintsWithLineBreaks.Aggregate("", (current, fieldHint) => current + fieldHint);
+        }
 
-            formatted += $"Field #{fieldNumber}:\n";
-            formatted += hintsWithLineBreaks.Aggregate("", (current, fieldHint) => current + fieldHint);
-            return formatted;
+        private static string FieldHeader(int fieldNumber)
+        {
+            return $"Field #{fieldNumber}:\n";
         }
 
         private static IEnumerable<string> SplitHints(string str, int chunkSize)
