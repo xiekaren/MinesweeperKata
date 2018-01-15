@@ -17,7 +17,7 @@ namespace MinesweeperKata
             _formatter = new Formatter();
         }
 
-        public string GetHints(string input)
+        public string ShowHints(string input)
         {
             var fields = _parser.InputToFields(input);
             var hints = _hinter.FieldsToHints(fields);
