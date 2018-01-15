@@ -3,7 +3,7 @@ using MinesweeperKata.DTO;
 using MinesweeperKata.Presentation;
 using NUnit.Framework;
 
-namespace MinesweeperKata.Tests
+namespace MinesweeperKata.Tests.Presentation
 {
     [TestFixture]
     public class FormatterShould

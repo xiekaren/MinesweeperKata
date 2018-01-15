@@ -7,12 +7,12 @@ namespace MinesweeperKata.Parsing
     public class InputParser
     {
         private readonly InputCleanser _cleanser;
-        private readonly InputExtractor _extractor;
+        private readonly ExtractFieldData _extractor;
 
         public InputParser()
         {
             _cleanser = new InputCleanser();
-            _extractor = new InputExtractor();
+            _extractor = new ExtractFieldData();
         }
 
         public IEnumerable<Field> InputToFields(string input)
@@ -25,9 +25,9 @@ namespace MinesweeperKata.Parsing
         {
             return new Field
             {
-                Rows = _extractor.GetNumberOfRows(inputField),
-                Columns = _extractor.GetNumberOfColumns(inputField),
-                Locations = _extractor.BuildLocations(inputField)
+                Rows = _extractor.Rows(inputField),
+                Columns = _extractor.Columns(inputField),
+                Locations = _extractor.Locations(inputField)
             };
         }
     }

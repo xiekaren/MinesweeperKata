@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="FieldHints\HinterShould.cs" />
     <Compile Include="Parsing\InputCleanserShould.cs" />
-    <Compile Include="Parsing\InputExtractorShould.cs" />
+    <Compile Include="Parsing\ExtractInputShould.cs" />
     <Compile Include="Parsing\InputParserShould.cs" />
     <Compile Include="Presentation\FormatterShould.cs" />
     <Compile Include="MinesweeperShould.cs" />

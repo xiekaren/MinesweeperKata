@@ -48,7 +48,7 @@
     <Compile Include="DTO\Location.cs" />
     <Compile Include="FieldHints\Hinter.cs" />
     <Compile Include="Parsing\InputCleanser.cs" />
-    <Compile Include="Parsing\InputExtractor.cs" />
+    <Compile Include="Parsing\ExtractFieldData.cs" />
     <Compile Include="Parsing\InputParser.cs" />
     <Compile Include="Presentation\Formatter.cs" />
     <Compile Include="Minesweeper.cs" />
