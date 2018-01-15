@@ -4,25 +4,9 @@ using MinesweeperKata.DTO;
 
 namespace MinesweeperKata.Presentation
 {
-    public class Formatter
+    public class HintFormatter : IFormatter<HintField>
     {
-        public string FormatHints(IEnumerable<HintField> hints)
-        {
-            var fieldNumber = 0;
-            return hints.Aggregate("", (current, hint) =>
-            {
-                fieldNumber++;
-                return current + FieldHeader(fieldNumber) + FieldHints(hint) + '\n';
-
-            }).TrimEnd('\n');
-        }
-
-        private static string FieldHeader(int fieldNumber)
-        {
-            return $"Field #{fieldNumber}:\n";
-        }
-
-        private static string FieldHints(HintField hintField)
+        public string Format(HintField hintField)
         {
             var singleLineHints = hintField.FieldHints.Aggregate("", (current, fieldHint) => current + fieldHint);
             var hintsInRows = SplitHints(singleLineHints, hintField.Columns);

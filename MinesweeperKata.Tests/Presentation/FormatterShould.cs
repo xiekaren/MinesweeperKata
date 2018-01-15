@@ -9,12 +9,12 @@ namespace MinesweeperKata.Tests.Presentation
     [TestFixture]
     public class FormatterShould
     {
-        private Formatter _formatter;
+        private FieldFormatter _fieldFormatter;
 
         [SetUp]
         public void SetUp()
         {
-            _formatter = new Formatter();
+            _fieldFormatter = new FieldFormatter();
         }
 
 
@@ -42,7 +42,7 @@ namespace MinesweeperKata.Tests.Presentation
             };
             var expectedFormat = Format(expected);
 
-            var actual = _formatter.FormatHints(hints);
+            var actual = _fieldFormatter.Format(hints);
 
             Assert.AreEqual(expectedFormat, actual);
         }
@@ -94,7 +94,7 @@ namespace MinesweeperKata.Tests.Presentation
             };
             var expectedFormat = Format(expected);
 
-            var actual = _formatter.FormatHints(hints);
+            var actual = _fieldFormatter.Format(hints);
 
             Assert.AreEqual(expectedFormat, actual);
         }
