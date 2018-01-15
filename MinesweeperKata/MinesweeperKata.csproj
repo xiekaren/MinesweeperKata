@@ -50,11 +50,12 @@
     <Compile Include="Parsing\InputCleanser.cs" />
     <Compile Include="Parsing\ExtractFieldData.cs" />
     <Compile Include="Parsing\InputParser.cs" />
-    <Compile Include="Presentation\Formatter.cs" />
+    <Compile Include="Presentation\FieldFormatter.cs" />
     <Compile Include="Minesweeper.cs" />
     <Compile Include="FieldHints\NeighbourInspector.cs" />
     <Compile Include="Presentation\HeaderFormatter.cs" />
     <Compile Include="Presentation\HintFormatter.cs" />
+    <Compile Include="Presentation\IFormatter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
