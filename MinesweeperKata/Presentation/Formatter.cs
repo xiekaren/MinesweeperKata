@@ -8,33 +8,25 @@ namespace MinesweeperKata.Presentation
     {
         public string FormatHints(IEnumerable<HintField> hints)
         {
-            var formatted = "";
-            var fieldNumber = 1;
-
-            foreach (var hintField in hints)
+            var fieldNumber = 0;
+            return hints.Aggregate("", (current, hint) =>
             {
-                formatted += FormatField(fieldNumber, hintField) + "\n";
                 fieldNumber++;
-            }
+                return current + FieldHeader(fieldNumber) + FieldHints(hint) + '\n';
 
-            return formatted.TrimEnd('\n');
-        }
-
-        public string FormatField(int fieldNumber, HintField hintField)
-        {
-            return FieldHeader(fieldNumber) + FieldHints(hintField);
-        }
-
-        private static string FieldHints(HintField hintField)
-        {
-            var hintsAsString = hintField.FieldHints.Aggregate("", (current, fieldHint) => current + fieldHint);
-            var hintsWithLineBreaks = SplitHints(hintsAsString, hintField.Columns);
-            return hintsWithLineBreaks.Aggregate("", (current, fieldHint) => current + fieldHint);
+            }).TrimEnd('\n');
         }
 
         private static string FieldHeader(int fieldNumber)
         {
             return $"Field #{fieldNumber}:\n";
+        }
+
+        private static string FieldHints(HintField hintField)
+        {
+            var singleLineHints = hintField.FieldHints.Aggregate("", (current, fieldHint) => current + fieldHint);
+            var hintsInRows = SplitHints(singleLineHints, hintField.Columns);
+            return hintsInRows.Aggregate("", (current, fieldHint) => current + fieldHint);
         }
 
         private static IEnumerable<string> SplitHints(string str, int chunkSize)
