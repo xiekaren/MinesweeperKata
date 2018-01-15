@@ -21,7 +21,7 @@ namespace MinesweeperKata.Parsing
             return inputFields.Select(ToField).ToList();
         }
 
-        public Field ToField(string inputField)
+        private Field ToField(string inputField)
         {
             return new Field
             {
