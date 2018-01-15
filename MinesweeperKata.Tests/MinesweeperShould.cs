@@ -86,7 +86,7 @@ namespace MinesweeperKata.Tests
             var formattedOutput = FormatInput(expectedOutput);
             var formattedInput = FormatInput(input);
 
-            var result = _minesweeper.GetHints(formattedInput);
+            var result = _minesweeper.ShowHints(formattedInput);
 
             Assert.AreEqual(formattedOutput, result);
         }
