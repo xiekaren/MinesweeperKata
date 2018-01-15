@@ -46,11 +46,11 @@
     <Compile Include="DTO\Field.cs" />
     <Compile Include="DTO\HintField.cs" />
     <Compile Include="DTO\Location.cs" />
+    <Compile Include="FieldHints\Hinter.cs" />
     <Compile Include="Parsing\InputCleanser.cs" />
     <Compile Include="Parsing\InputExtractor.cs" />
     <Compile Include="Parsing\InputTransformer.cs" />
     <Compile Include="Presentation\Formatter.cs" />
-    <Compile Include="DTO\Minefield.cs" />
     <Compile Include="Minesweeper.cs" />
     <Compile Include="FieldHints\NeighbourInspector.cs" />
     <Compile Include="DTO\Point.cs" />

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MinesweeperKata.DTO;
 using MinesweeperKata.FieldHints;
@@ -13,14 +12,14 @@ namespace MinesweeperKata
         private readonly InputTransformer _transformer;
         private readonly InputCleanser _cleanser;
         private readonly Formatter _formatter;
-        private readonly NeighbourInspector _neighbourInspector;
+        private readonly Hinter _hinter;
 
         public Minesweeper()
         {
+            _hinter = new Hinter();
             _formatter = new Formatter();
             _transformer = new InputTransformer(new InputExtractor());
             _cleanser = new InputCleanser();
-            _neighbourInspector = new NeighbourInspector();
         }
 
         public string GetHints(string input)
@@ -42,28 +41,9 @@ namespace MinesweeperKata
                 {
                     Rows = field.Rows,
                     Columns = field.Columns,
-                    FieldHints = GetHints(field)
+                    FieldHints = _hinter.GetHintsFor(field)
                 })
                 .ToList();
-        }
-
-        private IEnumerable<string> GetHints(Field field)
-        {
-            var hints = new List<string>();
-
-            foreach (var fieldLocation in field.Locations)
-            {
-                if (fieldLocation.IsMine)
-                {
-                    hints.Add("*");
-                }
-                else
-                {
-                    var numMines = _neighbourInspector.CountMinesAroundPoint(fieldLocation, field);
-                    hints.Add(numMines.ToString());
-                }
-            }
-            return hints;
         }
     }
 }

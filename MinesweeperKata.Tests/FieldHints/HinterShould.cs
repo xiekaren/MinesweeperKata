@@ -18,7 +18,7 @@ namespace MinesweeperKata.Tests.FieldHints
         }
 
         [Test]
-        public void TransformFieldsToHints()
+        public void GetHintsForField()
         {
             var field = new Field
             {
@@ -41,19 +41,32 @@ namespace MinesweeperKata.Tests.FieldHints
             Assert.AreEqual(expectedHint, result);
 
         }
-    }
 
-    public class Hinter
-    {  
-        public IEnumerable<string> GetHintsFor(Field field)
+        [Test]
+        public void GetHintsForField2()
         {
-            return field.Locations.Select(fieldLocation => GetHint(field, fieldLocation)).ToList();
-        }
+            var field = new Field
+            {
+                Rows = 2,
+                Columns = 3,
+                Locations = new List<Location>
+                {
+                    new Location {Row = 0, Column = 0, IsMine = false}, new Location {Row = 0, Column = 1, IsMine = true}, new Location {Row = 0, Column = 2, IsMine = true},
+                    new Location {Row = 1, Column = 0, IsMine = true}, new Location {Row = 1, Column = 1, IsMine = true}, new Location {Row = 1, Column = 2, IsMine = true},
+                }
+            };
 
-        private static string GetHint(Field field, Location fieldLocation)
-        {
-            var neighbourInspector = new NeighbourInspector();
-            return fieldLocation.IsMine ? "*" : neighbourInspector.CountMinesAroundPoint(fieldLocation, field).ToString();
+            var expectedHint = new List<string>
+            {
+                "3", "*", "*",
+                "*", "*", "*",
+            };
+
+
+            var result = _hinter.GetHintsFor(field);
+
+            Assert.AreEqual(expectedHint, result);
+
         }
     }
 }
