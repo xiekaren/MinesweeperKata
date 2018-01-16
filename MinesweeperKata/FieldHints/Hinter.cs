@@ -6,8 +6,8 @@ namespace MinesweeperKata.FieldHints
 {
     public class Hinter
     {
-        private const string MineHint = "*";
         private readonly MineCounter _mineCounter;
+        private const string MineHint = "*";
 
         public Hinter()
         {

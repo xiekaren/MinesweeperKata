@@ -9,6 +9,8 @@ namespace MinesweeperKata.Presentation
         private readonly IFormatter<int> _headerFormatter;
         private readonly IFormatter<HintField> _hintFormatter;
 
+        private const char LineBreak = '\n';
+
         public FieldFormatter()
         {
             _headerFormatter = new HeaderFormatter();
@@ -21,9 +23,9 @@ namespace MinesweeperKata.Presentation
             return hints.Aggregate("", (current, hint) =>
             {
                 fieldNumber++;
-                return current + _headerFormatter.Format(fieldNumber) + _hintFormatter.Format(hint) + '\n';
+                return current + _headerFormatter.Format(fieldNumber) + _hintFormatter.Format(hint) + LineBreak;
 
-            }).TrimEnd('\n');
+            }).TrimEnd(LineBreak);
         }
  
     }
