@@ -22,7 +22,7 @@ namespace MinesweeperKata
         public string ShowHints(string input)
         {
             var fields = _parser.InputToFields(input);
-            var hints = _hinter.FieldsToHints(fields);
+            var hints = _hinter.GetFieldHints(fields);
             return _fieldFormatter.Format(hints);
         }
     }

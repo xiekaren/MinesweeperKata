@@ -113,7 +113,7 @@ namespace MinesweeperKata.Tests.FieldHints
                 }
             };
 
-            var result = _hinter.FieldsToHints(fields);
+            var result = _hinter.GetFieldHints(fields);
 
             CollectionAssert.AreEqual(expected, result);
         }

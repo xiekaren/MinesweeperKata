@@ -6,6 +6,7 @@ namespace MinesweeperKata.FieldHints
 {
     public class Hinter
     {
+        private const string MineHint = "*";
         private readonly MineCounter _mineCounter;
 
         public Hinter()
@@ -13,7 +14,7 @@ namespace MinesweeperKata.FieldHints
             _mineCounter = new MineCounter();
         }
 
-        public IEnumerable<HintField> FieldsToHints(IEnumerable<Field> fields)
+        public IEnumerable<HintField> GetFieldHints(IEnumerable<Field> fields)
         {
             return fields.Select(field => new HintField
                 {
@@ -26,12 +27,12 @@ namespace MinesweeperKata.FieldHints
 
         public IEnumerable<string> GetHintsFor(Field field)
         {
-            return field.Locations.Select(fieldLocation => GetHint(field, fieldLocation)).ToList();
+            return field.Locations.Select(point => GetHintForPoint(field, point)).ToList();
         }
 
-        private string GetHint(Field field, Point fieldPoint)
+        private string GetHintForPoint(Field field, Point point)
         {
-            return fieldPoint.IsMine ? "*" : _mineCounter.CountAroundPoint(fieldPoint, field).ToString();
+            return point.IsMine ? MineHint : _mineCounter.CountAroundPoint(point, field).ToString();
         }
     }
 }
