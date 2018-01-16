@@ -15,7 +15,38 @@ namespace MinesweeperKata.Tests.FieldHints
         public void SetUp()
         {
             _mineCounter = new MineCounter();
-            _field = new Field
+
+        }
+     
+        [TestCase(0, 0, 0)]
+        [TestCase(0, 1, 1)]
+        [TestCase(1, 0, 3)]
+        [TestCase(1, 1, 3)]
+        [TestCase(2, 0, 1)]
+        [TestCase(2, 1, 1)]
+        [Ignore("")]
+        public void CountAroundPoint(int row, int column, int expected)
+        {
+            var point = new Point
+            {
+                Row = row,
+                Column = column
+            };
+
+            var result = _mineCounter.CountAroundPoint(point, _field);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase(0, 0, true)]
+        [TestCase(0, 1, true)]
+        [TestCase(1, 0, true)]
+        [TestCase(1, 1, true)]
+        [TestCase(2, 0, true)]
+        [TestCase(2, 1, true)]
+        public void CountNeighbours(int row, int column, bool expected)
+        {
+            var field = new Field
             {
                 Rows = 3,
                 Columns = 2,
@@ -26,23 +57,20 @@ namespace MinesweeperKata.Tests.FieldHints
                     new Point { Row = 2, Column = 0, IsMine = true }, new Point {Row = 2, Column = 1, IsMine = true },
                 }
             };
-        }
-     
-        [TestCase(0, 0, 0)]
-        [TestCase(0, 1, 1)]
-        [TestCase(1, 0, 3)]
-        [TestCase(1, 1, 3)]
-        [TestCase(2, 0, 1)]
-        [TestCase(2, 1, 1)]
-        public void CountAroundPoint(int row, int column, int expected)
-        {
+
             var point = new Point
+            {
+                Row = 1,
+                Column = 0
+            };
+
+            var neighbouringPoint = new Point
             {
                 Row = row,
                 Column = column
             };
 
-            var result = _mineCounter.CountAroundPoint(point, _field);
+            var result = _mineCounter.AreNeighbours(point, neighbouringPoint, field);
 
             Assert.AreEqual(expected, result);
         }
