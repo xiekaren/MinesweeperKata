@@ -46,6 +46,7 @@
     <Compile Include="DTO\Field.cs" />
     <Compile Include="DTO\HintField.cs" />
     <Compile Include="DTO\Point.cs" />
+    <Compile Include="FieldHints\FieldAnalyser.cs" />
     <Compile Include="FieldHints\Hinter.cs" />
     <Compile Include="Parsing\InputCleanser.cs" />
     <Compile Include="Parsing\ExtractFieldData.cs" />
