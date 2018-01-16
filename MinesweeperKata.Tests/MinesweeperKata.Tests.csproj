@@ -63,7 +63,7 @@
     <Compile Include="Parsing\InputParserShould.cs" />
     <Compile Include="Presentation\FormatterShould.cs" />
     <Compile Include="MinesweeperShould.cs" />
-    <Compile Include="FieldHints\NeighbourInspectorShould.cs" />
+    <Compile Include="FieldHints\MineCounterShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

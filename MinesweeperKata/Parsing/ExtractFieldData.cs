@@ -16,16 +16,16 @@ namespace MinesweeperKata.Parsing
             return int.Parse(inputField[1].ToString());
         }
 
-        public IEnumerable<Location> Locations(string inputField)
+        public IEnumerable<Point> Locations(string inputField)
         {
             var locations = GetInputLocations(inputField);
 
-            var result = new List<Location>();
+            var result = new List<Point>();
             for (var row = 0; row < locations.Count; row++)
             {
                 for (var column = 0; column < locations[0].Length; column++)
                 {
-                    result.Add(new Location
+                    result.Add(new Point
                     {
                         Row = row, Column = column,
                         IsMine = locations[row][column] == '*'

@@ -45,14 +45,14 @@
   <ItemGroup>
     <Compile Include="DTO\Field.cs" />
     <Compile Include="DTO\HintField.cs" />
-    <Compile Include="DTO\Location.cs" />
+    <Compile Include="DTO\Point.cs" />
     <Compile Include="FieldHints\Hinter.cs" />
     <Compile Include="Parsing\InputCleanser.cs" />
     <Compile Include="Parsing\ExtractFieldData.cs" />
     <Compile Include="Parsing\InputParser.cs" />
     <Compile Include="Presentation\FieldFormatter.cs" />
     <Compile Include="Minesweeper.cs" />
-    <Compile Include="FieldHints\NeighbourInspector.cs" />
+    <Compile Include="FieldHints\MineCounter.cs" />
     <Compile Include="Presentation\HeaderFormatter.cs" />
     <Compile Include="Presentation\HintFormatter.cs" />
     <Compile Include="Presentation\IFormatter.cs" />

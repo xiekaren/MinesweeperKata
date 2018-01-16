@@ -7,7 +7,7 @@ namespace MinesweeperKata.DTO
     {
         public int Rows { get; set; }
         public int Columns { get; set; }
-        public IEnumerable<Location> Locations { get; set; }
+        public IEnumerable<Point> Locations { get; set; }
 
         public override bool Equals(object obj)
         {

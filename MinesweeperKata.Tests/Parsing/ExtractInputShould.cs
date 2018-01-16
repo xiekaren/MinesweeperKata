@@ -40,10 +40,10 @@ namespace MinesweeperKata.Tests.Parsing
                                                      ".*\n" +
                                                      "**");
 
-            var expected = new List<Location>
+            var expected = new List<Point>
             {
-                new Location { Row = 0, Column = 0, IsMine = false}, new Location { Row = 0, Column = 1, IsMine = true},
-                new Location { Row = 1, Column = 0, IsMine = true}, new Location { Row = 1, Column = 1, IsMine = true},
+                new Point { Row = 0, Column = 0, IsMine = false}, new Point { Row = 0, Column = 1, IsMine = true},
+                new Point { Row = 1, Column = 0, IsMine = true}, new Point { Row = 1, Column = 1, IsMine = true},
             };
 
             CollectionAssert.AreEqual(expected, result);

@@ -24,9 +24,9 @@ namespace MinesweeperKata.Tests.FieldHints
             {
                 Rows = 1,
                 Columns = 1,
-                Locations = new List<Location>
+                Locations = new List<Point>
                 {
-                    new Location {Row = 0, Column = 0, IsMine = true}
+                    new Point {Row = 0, Column = 0, IsMine = true}
                 }
             };
 
@@ -49,10 +49,10 @@ namespace MinesweeperKata.Tests.FieldHints
             {
                 Rows = 2,
                 Columns = 3,
-                Locations = new List<Location>
+                Locations = new List<Point>
                 {
-                    new Location {Row = 0, Column = 0, IsMine = false}, new Location {Row = 0, Column = 1, IsMine = true}, new Location {Row = 0, Column = 2, IsMine = true},
-                    new Location {Row = 1, Column = 0, IsMine = true}, new Location {Row = 1, Column = 1, IsMine = true}, new Location {Row = 1, Column = 2, IsMine = true},
+                    new Point {Row = 0, Column = 0, IsMine = false}, new Point {Row = 0, Column = 1, IsMine = true}, new Point {Row = 0, Column = 2, IsMine = true},
+                    new Point {Row = 1, Column = 0, IsMine = true}, new Point {Row = 1, Column = 1, IsMine = true}, new Point {Row = 1, Column = 2, IsMine = true},
                 }
             };
 
@@ -77,17 +77,17 @@ namespace MinesweeperKata.Tests.FieldHints
                 new Field
                 {
                     Rows = 1, Columns = 1,
-                    Locations = new List<Location> {new Location {Row = 0, Column = 0, IsMine = false}}
+                    Locations = new List<Point> {new Point {Row = 0, Column = 0, IsMine = false}}
                 },
                 new Field
                 {
                     Rows = 2, Columns = 2,
-                    Locations = new List<Location>
+                    Locations = new List<Point>
                     {
-                        new Location {Row = 0, Column = 0, IsMine = false},
-                        new Location {Row = 0, Column = 1, IsMine = true},
-                        new Location {Row = 1, Column = 0, IsMine = true},
-                        new Location {Row = 1, Column = 1, IsMine = false}
+                        new Point {Row = 0, Column = 0, IsMine = false},
+                        new Point {Row = 0, Column = 1, IsMine = true},
+                        new Point {Row = 1, Column = 0, IsMine = true},
+                        new Point {Row = 1, Column = 1, IsMine = false}
                     }
                 }
             };
