@@ -17,7 +17,7 @@ namespace MinesweeperKata.FieldHints
         public int CountAroundPoint(Point point, Field field)
         {
             var neighbours = _fieldAnalyser.GetNeighbours(point, field);
-            return neighbours.Count(neighbour => neighbour.IsMine);
+            return neighbours.Count(neighbour => AreNeighbours(point, neighbour, field) && neighbour.IsMine);
         }
 
         public bool AreNeighbours(Point point, Point neighbouringPoint, Field field)

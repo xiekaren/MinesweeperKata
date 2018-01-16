@@ -24,16 +24,27 @@ namespace MinesweeperKata.Tests.FieldHints
         [TestCase(1, 1, 3)]
         [TestCase(2, 0, 1)]
         [TestCase(2, 1, 1)]
-        [Ignore("")]
         public void CountAroundPoint(int row, int column, int expected)
         {
+            var field = new Field
+            {
+                Rows = 3,
+                Columns = 2,
+                Locations = new List<Point>
+                {
+                    new Point { Row = 0, Column = 0, IsMine = true }, new Point {Row = 0, Column = 1, IsMine = false },
+                    new Point { Row = 1, Column = 0, IsMine = false },new Point {Row = 1, Column = 1, IsMine = false },
+                    new Point { Row = 2, Column = 0, IsMine = true }, new Point {Row = 2, Column = 1, IsMine = true },
+                }
+            };
+
             var point = new Point
             {
                 Row = row,
                 Column = column
             };
 
-            var result = _mineCounter.CountAroundPoint(point, _field);
+            var result = _mineCounter.CountAroundPoint(point, field);
 
             Assert.AreEqual(expected, result);
         }
