@@ -20,6 +20,7 @@ namespace MinesweeperKata.FieldHints
             return neighbours.Count(neighbour => AreNeighbours(point, neighbour, field) && neighbour.IsMine);
         }
 
+        
         public bool AreNeighbours(Point point, Point neighbouringPoint, Field field)
         {
             var minRow = Math.Max(0, point.Row - 1);
@@ -28,7 +29,8 @@ namespace MinesweeperKata.FieldHints
             var maxColumn = Math.Min(field.Columns, point.Column + 1);
 
             return neighbouringPoint.Row >= minRow && neighbouringPoint.Row <= maxRow
-                   && neighbouringPoint.Column >= minColumn && neighbouringPoint.Column <= maxColumn;
+                   && neighbouringPoint.Column >= minColumn && neighbouringPoint.Column <= maxColumn
+                   && !point.Equals(neighbouringPoint);
         }
     }
 }

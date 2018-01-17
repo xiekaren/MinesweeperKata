@@ -51,11 +51,11 @@ namespace MinesweeperKata.Tests.FieldHints
 
         [TestCase(0, 0, true)]
         [TestCase(0, 1, true)]
-        [TestCase(1, 0, true)]
+        [TestCase(1, 0, false)]
         [TestCase(1, 1, true)]
         [TestCase(2, 0, true)]
         [TestCase(2, 1, true)]
-        public void CountNeighbours(int row, int column, bool expected)
+        public void CheckNeighbours(int row, int column, bool expected)
         {
             var field = new Field
             {
