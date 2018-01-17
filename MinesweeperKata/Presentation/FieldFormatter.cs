@@ -23,10 +23,12 @@ namespace MinesweeperKata.Presentation
             return hints.Aggregate("", (current, hint) =>
             {
                 fieldNumber++;
-                return current + _headerFormatter.Format(fieldNumber) + _hintFormatter.Format(hint) + LineBreak;
+                return current
+                       + _headerFormatter.Format(fieldNumber)
+                       + _hintFormatter.Format(hint)
+                       + LineBreak;
 
             }).TrimEnd(LineBreak);
         }
- 
     }
 }
