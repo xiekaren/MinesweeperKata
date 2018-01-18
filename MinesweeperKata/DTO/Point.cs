@@ -1,24 +1,17 @@
-﻿using System.Globalization;
-
-namespace MinesweeperKata
+﻿namespace MinesweeperKata.DTO
 {
     public class Point
     {
-        public Point(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
+        public bool IsMine { get; set; }
 
         public override bool Equals(object obj)
         {
-            var other = (Point) obj;
-            return other != null && (other.X == X && other.Y == Y);
+            var other = (Point)obj;
+            return other != null && (other.Row == Row && other.Column == Column && other.IsMine == IsMine);
         }
 
-        public override int GetHashCode() => X.GetHashCode() + Y.GetHashCode();
+        public override int GetHashCode() => Row.GetHashCode() + Column.GetHashCode();
     }
 }

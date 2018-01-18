@@ -1,37 +1,108 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using MinesweeperKata.DTO;
+using MinesweeperKata.Presentation;
 using NUnit.Framework;
 
-namespace MinesweeperKata.Tests
+namespace MinesweeperKata.Tests.Presentation
 {
     [TestFixture]
     public class FormatterShould
     {
-        private Formatter _formatter;
+        private FieldFormatter _fieldFormatter;
 
         [SetUp]
         public void SetUp()
         {
-            _formatter = new Formatter();
+            _fieldFormatter = new FieldFormatter();
+        }
+
+
+        [Test]
+        public void FormatSingleHint()
+        {
+            var hints = new List<HintField>
+            {
+                new HintField
+                {
+                    Rows = 2, Columns = 1,
+                    FieldHints = new List<string>
+                    {
+                        "1",
+                        "*"
+                    }
+                }
+            };
+
+            var expected = new[]
+            {
+                "Field #1:",
+                "1",
+                "*"
+            };
+            var expectedFormat = Format(expected);
+
+            var actual = _fieldFormatter.Format(hints);
+
+            Assert.AreEqual(expectedFormat, actual);
         }
 
         [Test]
-        public void FormatMinefield()
+        public void FormatHints()
         {
-            var minefieldValues = new Dictionary<Point, int>
+            var hints = new List<HintField>
             {
-                {new Point(0, 0), 2},
-                {new Point(0, 1), -1},
-                {new Point(1, 0), -1},
-                {new Point(1, 1), 2},
+                new HintField
+                {
+                    Rows = 1, Columns = 1,
+                    FieldHints = new List<string>
+                    {
+                        "0"
+                    }
+                },
+                new HintField
+                {
+                    Rows = 2, Columns = 2,
+                    FieldHints = new List<string>
+                    {
+                        "2", "*",
+                        "*", "2"
+                    }
+                },
+                new HintField
+                {
+                    Rows = 1, Columns = 1,
+                    FieldHints = new List<string>
+                    {
+                        "0"
+                    }
+                },
             };
-            var size = new FieldSize{ Width = 2, Height = 2 };
-            var field = new Minefield(minefieldValues);
-            const string expected = "2*\n" +
-                                    "*2";
 
-            var result = _formatter.FormatMinefield(size, field);
+            var expected = new[]
+            {
+                "Field #1:",
+                "0",
+                "",
+                "Field #2:",
+                "2*",
+                "*2",
+                "",
+                "Field #3:",
+                "0"
 
-            Assert.AreEqual(expected, result);
+            };
+            var expectedFormat = Format(expected);
+
+            var actual = _fieldFormatter.Format(hints);
+
+            Assert.AreEqual(expectedFormat, actual);
+        }
+
+        private static string Format(IEnumerable<string> input)
+        {
+            var formattedInput = input.Aggregate("", (current, line) => current + line + "\n");
+            return formattedInput.TrimEnd('\n');
         }
     }
 }

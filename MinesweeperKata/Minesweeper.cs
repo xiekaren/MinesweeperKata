@@ -1,39 +1,29 @@
-﻿namespace MinesweeperKata
+﻿using System.Collections.Generic;
+using MinesweeperKata.DTO;
+using MinesweeperKata.FieldHints;
+using MinesweeperKata.Parsing;
+using MinesweeperKata.Presentation;
+
+namespace MinesweeperKata
 {
     public class Minesweeper
     {
-        private readonly HintAdder _hintAdder;
-        private readonly InputToMinefieldParser _inputToMinefieldParser;
-        private readonly Formatter _formatter;
+        private readonly InputParser _parser;
+        private readonly Hinter _hinter;
+        private readonly IFormatter<IEnumerable<HintField>> _fieldFormatter;
 
         public Minesweeper()
         {
-            _formatter = new Formatter();
-            _inputToMinefieldParser = new InputToMinefieldParser();
-            _hintAdder = new HintAdder();
+            _parser = new InputParser();
+            _hinter = new Hinter();
+            _fieldFormatter = new FieldFormatter();
         }
 
-        public string GetHints(string input)
+        public string ShowHints(string input)
         {
-            var fields = _inputToMinefieldParser.SplitFields(input);
-            var formattedOutput = "";
-            for (var fieldNumber = 0; fieldNumber < fields.Length; fieldNumber++)
-            {
-                var header = _inputToMinefieldParser.ParseHeader(fields[fieldNumber]);
-                if (header.Height == 0 || header.Width == 0)
-                {
-                    break;
-                }
-
-                formattedOutput += $"Field #{fieldNumber+1}:\n";
-
-                var minefield = _inputToMinefieldParser.ToMinefield(fields[fieldNumber]);
-                var minefieldWithHints = _hintAdder.GetFieldWithHints(minefield);
-                var formattedMinefield = _formatter.FormatMinefield(header, minefieldWithHints);
-
-                formattedOutput += formattedMinefield + "\n\n";
-            }
-            return formattedOutput.Trim('\n');
+            var fields = _parser.InputToFields(input);
+            var hints = _hinter.GetFieldHints(fields);
+            return _fieldFormatter.Format(hints);
         }
-    }    
+    }
 }

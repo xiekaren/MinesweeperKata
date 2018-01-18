@@ -43,15 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FieldHints\FieldInspector.cs" />
-    <Compile Include="DTO\FieldSize.cs" />
-    <Compile Include="Presentation\Formatter.cs" />
-    <Compile Include="FieldHints\HintAdder.cs" />
-    <Compile Include="Parsing\InputToMinefieldParser.cs" />
-    <Compile Include="DTO\Minefield.cs" />
-    <Compile Include="Minesweeper.cs" />
-    <Compile Include="FieldHints\NeighbourInspector.cs" />
+    <Compile Include="DTO\Field.cs" />
+    <Compile Include="DTO\HintField.cs" />
     <Compile Include="DTO\Point.cs" />
+    <Compile Include="FieldHints\FieldAnalyser.cs" />
+    <Compile Include="FieldHints\Hinter.cs" />
+    <Compile Include="Parsing\InputCleanser.cs" />
+    <Compile Include="Parsing\ExtractFieldData.cs" />
+    <Compile Include="Parsing\InputParser.cs" />
+    <Compile Include="Presentation\FieldFormatter.cs" />
+    <Compile Include="Minesweeper.cs" />
+    <Compile Include="FieldHints\MineCounter.cs" />
+    <Compile Include="Presentation\HeaderFormatter.cs" />
+    <Compile Include="Presentation\HintFormatter.cs" />
+    <Compile Include="Presentation\IFormatter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

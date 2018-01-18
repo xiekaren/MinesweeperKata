@@ -1,0 +1,22 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace MinesweeperKata.DTO
+{
+    public class Field
+    {
+        public int Rows { get; set; }
+        public int Columns { get; set; }
+        public IEnumerable<Point> Locations { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var other = (Field)obj;
+            return other != null 
+                && (other.Rows == Rows && other.Columns == Columns) 
+                && other.Locations.SequenceEqual(Locations);
+        }
+
+        public override int GetHashCode() => Rows.GetHashCode() + Columns.GetHashCode() + Locations.GetHashCode();
+    }
+}
